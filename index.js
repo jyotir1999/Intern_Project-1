@@ -21,7 +21,7 @@ var specialCharacterArray = [];
     specialCharacterArray.push("(");
     specialCharacterArray.push(")");
     specialCharacterArray.push(";");
-
+    specialCharacterArray.push("=");
 var keywordarray = [];
     keywordarray.push("SELECT");
     keywordarray.push("UPDATE");
@@ -154,14 +154,17 @@ function checkForSingleQuotes(){
 }
 
 function checkForUnknownSpecialCharacter(){
-   
+    
     var i;
     for(i = 0; i<tokenscopy.length; i++){
         
+        // if(IsNumeric(tokenscopy[i]) === true)
+        //     continue;
 
         if(tokenscopy[i].length === 1 && specialCharacterArray.includes(tokenscopy[i]) == false){
             unknownSpecialCharacter.push(tokenscopy[i]);
         }
+        
     }
 
     
@@ -202,7 +205,7 @@ function generateErrorString(){
     }
         
 
-    if(deletestarerror == true){
+    if(deletestarerror == true && tokens[0].toUpperCase().localeCompare("DELETE")){
         count++;
         errorString += "ERROR NO "+count+": "+ "* after DELETE keyword\n";
     }
@@ -222,7 +225,8 @@ function generateErrorString(){
 
     if(unknownSpecialCharacter.length !== 0){
         count++;
-        errorString += "ERROR NO "+count+": "+ "Unknown characters: "+unknownSpecialCharacter.toString();
+        errorString += "ERROR NO "+count+": "+ "Presence of Unknown characters : "+unknownSpecialCharacter.toString() +
+        "       [[ not  present  in  the  set  {  \"    \'    ;    =    *    (    )    ,  }         ]]\n";
     }    
        
 
