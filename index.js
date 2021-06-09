@@ -36,6 +36,10 @@ document.querySelector("#clear-btn").onclick = function(){
 document.querySelector("#validate-btn").onclick = function(){
    var query = document.querySelector(".querybox").value;
    
+   if(query.localeCompare("") === 0){
+        alert("Please Enter a Query");
+   }
+
    tokenizeString(query);
    
 
@@ -182,51 +186,51 @@ function generateErrorString(){
     var count = 0;
     if(keyworderror == true)
        { count++;
-         errorString += "ERROR NO "+count+": "+"First keyword is not out of {SELECT,DELETE,UPDATE,INSERT}\n";
+         errorString += "ERROR NO "+count+": "+"First keyword is not out of {SELECT,DELETE,UPDATE,INSERT}\n\n";
          
         }
     
     if(semicolonerror == true){
         count++;
-        errorString += "EERROR NO "+count+": "+ "Missing semicolon\n";
+        errorString += "EERROR NO "+count+": "+ "Missing semicolon\n\n";
     }
         
     
     if(bracketserror == true){
         count++;
-        errorString += "ERROR NO "+count+": "+ "Brackets not balanced\n";
+        errorString += "ERROR NO "+count+": "+ "Brackets not balanced\n\n";
     }
         
 
     if(spaceafterkeyworderror == true && keyworderror == false){
         count++;
         
-        errorString += "ERROR NO "+count+": "+ "Space after keyword "+tokens[0].toUpperCase()+ " missing\n";
+        errorString += "ERROR NO "+count+": "+ "Space after keyword "+tokens[0].toUpperCase()+ " missing\n\n";
     }
         
 
     if(deletestarerror == true && tokens[0].toUpperCase().localeCompare("DELETE")){
         count++;
-        errorString += "ERROR NO "+count+": "+ "* after DELETE keyword\n";
+        errorString += "ERROR NO "+count+": "+ "* after DELETE keyword\n\n";
     }
         
 
     if(doubleQuoteserror == true){
         count++;
-        errorString += "ERROR NO "+count+": "+ "Double Quotes not balanced\n";
+        errorString += "ERROR NO "+count+": "+ "Double Quotes not balanced\n\n";
     }
         
 
     if(singleQuoteserror == true){
         count++;
-        errorString += "ERROR NO "+count+": "+ "Single Quotes not balanced\n";
+        errorString += "ERROR NO "+count+": "+ "Single Quotes not balanced\n\n";
     }
         
 
     if(unknownSpecialCharacter.length !== 0){
         count++;
         errorString += "ERROR NO "+count+": "+ "Presence of Unknown characters : "+unknownSpecialCharacter.toString() +
-        "       [[ not  present  in  the  set  {  \"    \'    ;    =    *    (    )    ,  }         ]]\n";
+        "       [[ not  present  in  the  set  {  \"    \'    ;    =    *    (    )    ,  }         ]]\n\n";
     }    
        
 
