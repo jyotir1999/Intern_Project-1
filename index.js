@@ -176,30 +176,55 @@ function generateErrorString(){
     // var deletestarerror = false;
     // var doubleQuoteserror = false;
     // var singleQuoteserror = false;
-
+    var count = 0;
     if(keyworderror == true)
-        errorString += "Missing Selected Keywords out of {SELECT,DELETE,UPDATE,INSERT}\n";
+       { count++;
+         errorString += "ERROR NO "+count+": "+"First keyword is not out of {SELECT,DELETE,UPDATE,INSERT}\n";
+         
+        }
     
-    if(semicolonerror == true)
-        errorString += "Missing semicolon\n";
+    if(semicolonerror == true){
+        count++;
+        errorString += "EERROR NO "+count+": "+ "Missing semicolon\n";
+    }
+        
     
-    if(bracketserror == true)
-        errorString += "Brackets not balanced\n";
+    if(bracketserror == true){
+        count++;
+        errorString += "ERROR NO "+count+": "+ "Brackets not balanced\n";
+    }
+        
 
-    if(spaceafterkeyworderror == true)
-        errorString += "Space after keyword missing\n";
+    if(spaceafterkeyworderror == true && keyworderror == false){
+        count++;
+        
+        errorString += "ERROR NO "+count+": "+ "Space after keyword "+tokens[0].toUpperCase()+ " missing\n";
+    }
+        
 
-    if(deletestarerror == true)
-        errorString += "* after DELETE keyword\n";
+    if(deletestarerror == true){
+        count++;
+        errorString += "ERROR NO "+count+": "+ "* after DELETE keyword\n";
+    }
+        
 
-    if(doubleQuoteserror == true)
-        errorString += "Double Quotes not balanced\n";
+    if(doubleQuoteserror == true){
+        count++;
+        errorString += "ERROR NO "+count+": "+ "Double Quotes not balanced\n";
+    }
+        
 
-    if(singleQuoteserror == true)
-        errorString += "Single Quotes not balanced\n";
+    if(singleQuoteserror == true){
+        count++;
+        errorString += "ERROR NO "+count+": "+ "Single Quotes not balanced\n";
+    }
+        
 
-    if(unknownSpecialCharacter.length !== 0)    
-       errorString += ("Unknown characters: "+unknownSpecialCharacter.toString());
+    if(unknownSpecialCharacter.length !== 0){
+        count++;
+        errorString += "ERROR NO "+count+": "+ "Unknown characters: "+unknownSpecialCharacter.toString();
+    }    
+       
 
     if(errorString.localeCompare("") === 0)
         errorString += "Everything alright";
