@@ -41,11 +41,8 @@ document.querySelector("#validate-btn").onclick = function(){
    }
 
    tokenizeString(query);
-   var last = tokens[tokens.length-1].toString().charCodeAt(0);
-   if(last === 10){
-       tokens.pop();
-       tokenscopy.pop();
-   }
+   trim(query);
+  
 
    keyworderror = checkForKeyword();
    semicolonerror = checkForSemiColon();
@@ -74,6 +71,14 @@ function tokenizeString(query){
     tokenscopy = tokens;
     tokenscopy = tokenscopy.filter(function(entry) { return /\S/.test(entry); });
    
+}
+
+function trim(query){
+    var last = tokens[tokens.length-1].toString().charCodeAt(0);
+    if(last === 10){
+        tokens.pop();
+        tokenscopy.pop();
+    }
 }
 
 function checkForKeyword(){
