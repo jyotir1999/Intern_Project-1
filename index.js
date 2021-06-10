@@ -89,7 +89,7 @@ function checkForKeyword(){
 }
 function checkForSemiColon(){
 
-    var semicolon = tokenscopy[tokens.length-1];
+    var semicolon = tokenscopy[tokenscopy.length-1];
 
     if(semicolon.localeCompare(";") === 0)   
         return false;
