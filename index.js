@@ -41,7 +41,11 @@ document.querySelector("#validate-btn").onclick = function(){
    }
 
    tokenizeString(query);
-   
+   var last = tokens[tokens.length-1].toString().charCodeAt(0);
+   if(last === 10){
+       tokens.pop();
+       tokenscopy.pop();
+   }
 
    keyworderror = checkForKeyword();
    semicolonerror = checkForSemiColon();
@@ -74,7 +78,7 @@ function tokenizeString(query){
 
 function checkForKeyword(){
 
-    var keyword = tokens[0];
+    var keyword = tokenscopy[0];
     keyword = keyword.toUpperCase();
 
     if(keywordarray.includes(keyword))
@@ -85,7 +89,7 @@ function checkForKeyword(){
 }
 function checkForSemiColon(){
 
-    var semicolon = tokens[tokens.length-1];
+    var semicolon = tokenscopy[tokens.length-1];
 
     if(semicolon.localeCompare(";") === 0)   
         return false;
@@ -182,7 +186,7 @@ function generateErrorString(){
     // var spaceafterkeyworderror = false;
     // var deletestarerror = false;
     // var doubleQuoteserror = false;
-    // var singleQuoteserror = false;
+    // var singleQuoteserror = false;the :"   "
     var count = 0;
     if(keyworderror == true)
        { count++;
