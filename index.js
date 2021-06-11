@@ -30,9 +30,16 @@ var keywordarray = [];
 
 var errorString = "";
 
+document.querySelector("#redirecting").onclick = function(){
+    // window.location.href = "https://www.google.com/";
+    window.location.replace("https://www.google.com/");
+}
+
 document.querySelector("#clear-btn").onclick = function(){
     document.querySelector(".querybox").value = "";
 };
+
+
 document.querySelector("#validate-btn").onclick = function(){
    var query = document.querySelector(".querybox").value;
    
@@ -40,10 +47,10 @@ document.querySelector("#validate-btn").onclick = function(){
         alert("Please Enter a Query");
    }
 
-   tokenizeString(query);
-   trim(query);
-  
+   var queryWithoutLines = query.replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, "");
 
+   tokenizeString(query);
+   
    keyworderror = checkForKeyword();
    semicolonerror = checkForSemiColon();
    bracketserror = checkForBrackets();
@@ -56,12 +63,40 @@ document.querySelector("#validate-btn").onclick = function(){
     singleQuoteserror = checkForSingleQuotes();
     checkForUnknownSpecialCharacter();
     
-    generateErrorString();
+    generateErrorString(query);
     alert(errorString);
+
+    if(errorString.localeCompare("Everything alright") === 0){
+        Download(queryWithoutLines);
+    }
+
     errorString = "";
     unknownSpecialCharacter = [];
     
 };
+
+function Download(queryWithoutLines){
+    
+  const textToBLOB = new Blob([queryWithoutLines], {
+    type: 'text/plain'
+  });
+
+  const sFileName = 'formData.txt'; // The file to save the data.
+
+  let newLink = document.createElement("a");
+  newLink.download = sFileName;
+
+  if (window.webkitURL != null) {
+    newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+  } 
+  else {
+    newLink.href = window.URL.createObjectURL(textToBLOB);
+    newLink.style.display = "none";
+    document.body.appendChild(newLink);
+  }
+
+  newLink.click();
+}
 
 function tokenizeString(query){
     tokens = query.split(/([,\s\'\";)(*])/g);
@@ -73,13 +108,6 @@ function tokenizeString(query){
    
 }
 
-function trim(query){
-    var last = tokens[tokens.length-1].toString().charCodeAt(0);
-    if(last === 10){
-        tokens.pop();
-        tokenscopy.pop();
-    }
-}
 
 function checkForKeyword(){
 
@@ -141,8 +169,8 @@ function checkForDeleteStar(){
 function checkForDoubleQuotes(){
     var countDoubleQuotes = 0;
 
-    for(var str in tokenscopy){
-        if(str.localeCompare("\"") === 0)
+    for(var i=0;i<tokenscopy.length;i++){
+        if(tokenscopy[i].localeCompare("\"") === 0)
         countDoubleQuotes++;
     }
 
@@ -155,8 +183,8 @@ function checkForDoubleQuotes(){
 function checkForSingleQuotes(){
     var countSingleQuotes = 0;
 
-    for(var str in tokenscopy){
-        if(str.localeCompare("\'") === 0)
+    for(var i = 0;i<tokenscopy.length;i++){
+        if(tokenscopy[i].localeCompare("\'") === 0)
         countSingleQuotes++;
     }
 
@@ -243,6 +271,9 @@ function generateErrorString(){
     }    
        
 
-    if(errorString.localeCompare("") === 0)
+    if(errorString.localeCompare("") === 0){
         errorString += "Everything alright";
+        
+    }
+        
 }
