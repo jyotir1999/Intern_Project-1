@@ -1,12 +1,18 @@
 body{
     margin: 0px;
+    background-image: url("back.jpg");
+    /* background-position: center center; */
+    background-size: cover;
+    -webkit-backdrop-filter: blur(08px);
+     backdrop-filter: blur(08px);
 }
 h1{
     font-family: 'Hind Siliguri', sans-serif;
-    font-weight: normal;
+    font-weight: bolder;
     margin-bottom: 20px;
     text-align: center;
     display: block;
+    /* color: white; */
    
 }
 
@@ -24,7 +30,7 @@ h1{
     padding-top: 10px;
     text-align: center;
     background-color: #1b1717;
-    
+    margin-top: 20px;
     height: 80px;
 }
 .outer_box{
@@ -35,33 +41,41 @@ h1{
     margin-bottom: 30px;
     
     padding: 2px;
-    background-color: white;
-    border: 2px solid #e6e6e6;
+    /* background-color: white;
+    border: 2px solid #e6e6e6; */
     box-sizing: border-box;
     border-radius: 5px;
     display: block;
 }
 .main_box{
+    /* background-color: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); */
     display: inline-block;
     text-align: left;
     padding: 5 px;
-    margin-left: 20px;
+    margin-left: 40px;
     width: 800px;
     height: 330px;
 }
 .error_box{
+    /* background-color: rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+     backdrop-filter: blur(10px); */
     display: inline-block;
     text-align: right;
     margin:0px;
     margin-left: 20px;
-    width: 670px;
+    width: 610px;
     
 }
 .form_box{
-    
+    /* -webkit-backdrop-filter: blur(10px);
+     backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.3); */
     display:block;
     padding-top: 20px;
-    margin-left: 20px;
+    margin-left: 40px;
     height: 140px;
     width: 800px;
     text-align: left;
@@ -75,17 +89,18 @@ h1{
     font-family: 'Hind Siliguri', sans-serif ;
     font-size: 20px;
     margin-bottom: 5px;
-    
+    font-weight: bolder;
     display: inline;
-
+    
 }
 .labels{
     /* display:table-cell; */
+    font-weight: bolder;
     display: inline-block;
     text-align: left;
     width: 200px;
     font-family: 'Hind Siliguri', sans-serif;
-    font-weight: normal;
+  
     font-size: 20px;
 }
 .btn {
@@ -130,11 +145,12 @@ h1{
       margin:0;
       border: 2px solid #e6e6e6;
       resize: none;
-      width: 100%;
+      width: 90%;
       height: 200px;
       font-size: 20px;
   }
   #error_area{
+      
       border: 2px solid #e6e6e6;
       height: 210px;  
       width: 600px;
@@ -153,7 +169,7 @@ h1{
       margin-right:50px;
   }
   #error{
-      height: 235px;
+      height: 233px;
   }
   #fullstop{
       color: white;
