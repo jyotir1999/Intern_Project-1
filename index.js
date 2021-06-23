@@ -29,18 +29,25 @@ var keywordarray = [];
     keywordarray.push("INSERT");
 
 var errorString = "";
+let submit_btn =  document.getElementById("submit_btn");
 
-document.querySelector("#redirecting").onclick = function(){
-    // window.location.href = "https://www.google.com/";
-    window.location.replace("https://www.google.com/");
-}
+// document.querySelector("#redirecting").onclick = function(){
+//     window.location.href = "https://www.google.com/";
+//     // window.location.replace("https://www.google.com/");
+// }
 
-document.querySelector("#clear-btn").onclick = function(){
+document.querySelector("#clear-btn").addEventListener("click",function(){
     document.querySelector(".querybox").value = "";
-};
+    document.querySelector("#error_area").innerHTML = "Errors here";
+    submit_btn.disabled = true;
+});
 
+// document.querySelector("#submit_btn").addEventListener("click",function(){
+    
+//     submit_btn.disabled = true;
+// });
 
-document.querySelector("#validate-btn").onclick = function(){
+document.querySelector("#validate-btn").addEventListener("click",function(){
    var query = document.querySelector(".querybox").value;
    
    if(query.localeCompare("") === 0){
@@ -64,16 +71,24 @@ document.querySelector("#validate-btn").onclick = function(){
     checkForUnknownSpecialCharacter();
     
     generateErrorString(query);
-    alert(errorString);
-
+    
+    document.querySelector("#error_area").innerHTML = errorString;
+    
     if(errorString.localeCompare("Everything alright") === 0){
-        Download(queryWithoutLines);
+            submit_btn.disabled = false;
+        }
+    else{
+          submit_btn.disabled = true;
     }
+
+    // if(errorString.localeCompare("Everything alright!!") === 0){
+    //     Download(queryWithoutLines);
+    // }
 
     errorString = "";
     unknownSpecialCharacter = [];
     
-};
+});
 
 function Download(queryWithoutLines){
     

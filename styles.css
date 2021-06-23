@@ -5,27 +5,32 @@ h1{
     font-family: 'Hind Siliguri', sans-serif;
     font-weight: normal;
     margin-bottom: 20px;
+    text-align: center;
+    display: block;
    
 }
+
 .top_container{
     background-color:#ce1212;
     height: 70px;
     border-bottom: 6px solid; 
 }
 .middle_container{
-    text-align: center;
-    height: 500px;
+    
+    /* text-align: left; */
+    height: 550px;
 }
 .bottom_container{
     padding-top: 10px;
     text-align: center;
     background-color: #1b1717;
-    margin-top: 20px;
-    height: 150px;
+    
+    height: 80px;
 }
 .outer_box{
+    text-align: left;
     width: 100%;
-    height: 300px;
+    height: 200px;
     display: inline-block;
     margin-bottom: 30px;
     
@@ -37,24 +42,51 @@ h1{
     display: block;
 }
 .main_box{
+    display: inline-block;
     text-align: left;
     padding: 5 px;
-    margin: auto;
+    margin-left: 20px;
     width: 800px;
-    height: 430px;
+    height: 330px;
+}
+.error_box{
+    display: inline-block;
+    text-align: right;
+    margin:0px;
+    margin-left: 20px;
+    width: 670px;
+    
+}
+.form_box{
+    
+    display:block;
+    padding-top: 20px;
+    margin-left: 20px;
+    height: 140px;
+    width: 800px;
+    text-align: left;
 }
 #logo{
     position:absolute;
     left: 20px;
     height: 80px;
 }
-#heading{
+.heading{
     font-family: 'Hind Siliguri', sans-serif ;
     font-size: 20px;
     margin-bottom: 5px;
     
-    display: block;
+    display: inline;
 
+}
+.labels{
+    /* display:table-cell; */
+    display: inline-block;
+    text-align: left;
+    width: 200px;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
 }
 .btn {
     display: inline;
@@ -70,11 +102,11 @@ h1{
     border-radius: 10px;
     font-family: Arial;
     color: #ffffff;
-    font-size: 10;
+    font-size: 25;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
-    width: 100px;
-    height: 30px;
+    width: 170px;
+    height: 40px;
     margin-bottom: 20px;
   }
   
@@ -99,9 +131,30 @@ h1{
       border: 2px solid #e6e6e6;
       resize: none;
       width: 100%;
-      height: 300px;
+      height: 200px;
       font-size: 20px;
+  }
+  #error_area{
+      border: 2px solid #e6e6e6;
+      height: 210px;  
+      width: 600px;
+      font-size: 15px;
+      resize: none;
   }
   #company_icon{
     display: inline;
+  }
+  .btn #sumbit_btn{
+      margin: 10px;
+      display: inline-block;
+  }
+  /*  */
+  #restartNap{
+      margin-right:50px;
+  }
+  #error{
+      height: 235px;
+  }
+  #fullstop{
+      color: white;
   }
